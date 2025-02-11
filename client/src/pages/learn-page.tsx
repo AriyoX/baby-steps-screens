@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { BottomNav } from "@/components/bottom-nav";
 import { motion } from "framer-motion";
+import { useLocation } from "wouter";
 
 interface ModuleCard {
   title: string;
@@ -28,20 +29,12 @@ const modules: ModuleCard[] = [
     title: "Play Games",
     icon: "🎮",
     link: "/learn/games"
-  },
-  {
-    title: "My Badges",
-    icon: "🏅",
-    link: "/learn/badges"
-  },
-  {
-    title: "Achievements",
-    icon: "🏆",
-    link: "/learn/achievements"
   }
 ];
 
 export default function LearnPage() {
+  const [, setLocation] = useLocation();
+
   return (
     <div className="min-h-screen bg-[#F7F9FC] pb-16">
       <div className="p-4">
@@ -50,9 +43,14 @@ export default function LearnPage() {
           animate={{ opacity: 1, y: 0 }}
           className="grid gap-4"
         >
+          <h1 className="text-2xl font-bold mb-2">Learning Modules</h1>
           <div className="grid grid-cols-2 gap-4">
             {modules.map((module) => (
-              <Card key={module.title} className="bg-white hover:shadow-lg transition-shadow">
+              <Card 
+                key={module.title} 
+                className="bg-white hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => setLocation(module.link)}
+              >
                 <CardContent className="p-6 text-center">
                   <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-3xl">
                     {module.icon}

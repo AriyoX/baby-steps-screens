@@ -9,6 +9,31 @@ import ParentDashboard from "@/pages/parent-dashboard";
 import ChildDashboard from "@/pages/child-dashboard";
 import ChildDetails from "@/pages/child-details";
 import LearnPage from "@/pages/learn-page";
+import AchievementsPage from "@/pages/achievements-page";
+import ModulePage from "@/pages/module-page";
+
+const modulePages = {
+  culture: {
+    title: "Learn Buganda Culture",
+    description: "Explore the rich traditions and customs of Buganda culture through interactive lessons.",
+    icon: "📚"
+  },
+  museum: {
+    title: "Virtual Museum",
+    description: "Take a virtual tour through historical artifacts and cultural exhibitions.",
+    icon: "🏛️"
+  },
+  stories: {
+    title: "Fun Stories",
+    description: "Read and listen to engaging stories from Buganda folklore and history.",
+    icon: "📖"
+  },
+  games: {
+    title: "Play Games",
+    description: "Learn while having fun with educational games based on Buganda culture.",
+    icon: "🎮"
+  }
+};
 
 function Router() {
   return (
@@ -26,6 +51,17 @@ function Router() {
       <Route path="/child/:id" component={ChildDashboard} />
       <Route path="/child/:id/details" component={ChildDetails} />
       <Route path="/learn" component={LearnPage} />
+      <Route path="/achievements" component={AchievementsPage} />
+
+      {/* Learning module routes */}
+      {Object.entries(modulePages).map(([key, props]) => (
+        <Route 
+          key={key}
+          path={`/learn/${key}`}
+          component={() => <ModulePage {...props} />}
+        />
+      ))}
+
       <Route component={NotFound} />
     </Switch>
   );
