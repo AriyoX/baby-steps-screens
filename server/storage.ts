@@ -5,6 +5,28 @@ import createMemoryStore from "memorystore";
 
 const MemoryStore = createMemoryStore(session);
 
+// Mock initial data
+const mockChildren: User[] = [
+  {
+    id: 2,
+    username: "alice",
+    password: "mock",
+    isParent: false,
+    parentId: 1,
+    displayName: "Alice",
+    avatarUrl: null
+  },
+  {
+    id: 3,
+    username: "bob",
+    password: "mock",
+    isParent: false,
+    parentId: 1,
+    displayName: "Bob",
+    avatarUrl: null
+  }
+];
+
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private achievements: Map<number, Achievement>;
@@ -16,9 +38,14 @@ export class MemStorage implements IStorage {
     this.users = new Map();
     this.achievements = new Map();
     this.progress = new Map();
-    this.currentId = 1;
     this.sessionStore = new MemoryStore({
       checkPeriod: 86400000,
+    });
+
+    // Initialize with mock data
+    this.currentId = 4; // After our mock users
+    mockChildren.forEach(child => {
+      this.users.set(child.id, child);
     });
   }
 
@@ -34,7 +61,7 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentId++;
-    const user: User = { ...insertUser, id };
+    const user: User = { id, ...insertUser };
     this.users.set(id, user);
     return user;
   }
