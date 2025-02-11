@@ -16,6 +16,10 @@ export default defineConfig({
     },
   },
   root: path.resolve(__dirname, "client"),
+  server: {
+    host: true, // Expose to all network interfaces
+    port: 5173, // Default Vite port
+  },
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
