@@ -8,7 +8,7 @@ import AuthPage from "@/pages/auth-page";
 import ParentDashboard from "@/pages/parent-dashboard";
 import ChildDashboard from "@/pages/child-dashboard";
 import ChildDetails from "@/pages/child-details";
-import { ProtectedRoute } from "./lib/protected-route";
+import LearnPage from "@/pages/learn-page";
 
 function Router() {
   return (
@@ -25,6 +25,7 @@ function Router() {
       <Route path="/child" component={ChildDashboard} />
       <Route path="/child/:id" component={ChildDashboard} />
       <Route path="/child/:id/details" component={ChildDetails} />
+      <Route path="/learn" component={LearnPage} />
       <Route component={NotFound} />
     </Switch>
   );
