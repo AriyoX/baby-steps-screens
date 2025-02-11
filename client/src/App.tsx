@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import AuthPage from "@/pages/auth-page";
 import ParentDashboard from "@/pages/parent-dashboard";
 import ChildDashboard from "@/pages/child-dashboard";
+import ChildDetails from "@/pages/child-details";
 import { ProtectedRoute } from "./lib/protected-route";
 
 function Router() {
@@ -20,8 +21,10 @@ function Router() {
         }}
       </Route>
       <Route path="/auth" component={AuthPage} />
-      <ProtectedRoute path="/parent" component={ParentDashboard} />
-      <ProtectedRoute path="/child" component={ChildDashboard} />
+      <Route path="/parent" component={ParentDashboard} />
+      <Route path="/child" component={ChildDashboard} />
+      <Route path="/child/:id" component={ChildDashboard} />
+      <Route path="/child/:id/details" component={ChildDetails} />
       <Route component={NotFound} />
     </Switch>
   );

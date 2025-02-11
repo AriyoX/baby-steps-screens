@@ -6,12 +6,14 @@ import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import { User } from "@shared/schema";
 import { AddChildDialog } from "@/components/add-child-dialog";
+import { useLocation } from "wouter";
 
 export default function ParentDashboard() {
   const { user, logoutMutation } = useAuth();
   const { data: children } = useQuery<User[]>({
     queryKey: ["/api/children"],
   });
+  const [, setLocation] = useLocation();
 
   return (
     <div className="min-h-screen bg-[#F7F9FC] p-4">
@@ -45,9 +47,22 @@ export default function ParentDashboard() {
                       Completed 2 lessons today
                     </div>
                   </div>
-                  <Button variant="outline" className="w-full">
-                    View Details
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button 
+                      variant="outline" 
+                      className="flex-1"
+                      onClick={() => setLocation(`/child/${child.id}/details`)}
+                    >
+                      View Details
+                    </Button>
+                    <Button 
+                      variant="default"
+                      className="flex-1"
+                      onClick={() => setLocation(`/child/${child.id}`)}
+                    >
+                      Login as Child
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
