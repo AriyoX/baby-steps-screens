@@ -9,28 +9,20 @@ export function registerRoutes(app: Express): Server {
 
   // Get children for parent
   app.get("/api/children", async (req, res) => {
-    if (!req.isAuthenticated() || !req.user.isParent) {
-      return res.sendStatus(401);
-    }
-    const children = await storage.getChildrenForParent(req.user.id);
+    // Since we're bypassing auth, always return children for parent ID 1
+    const children = await storage.getChildrenForParent(1);
     res.json(children);
   });
 
   // Get achievements for user
   app.get("/api/achievements", async (req, res) => {
-    if (!req.isAuthenticated()) {
-      return res.sendStatus(401);
-    }
-    const achievements = await storage.getAchievementsForUser(req.user.id);
+    const achievements = await storage.getAchievementsForUser(req.user?.id || 1);
     res.json(achievements);
   });
 
   // Get progress for user
   app.get("/api/progress", async (req, res) => {
-    if (!req.isAuthenticated()) {
-      return res.sendStatus(401);
-    }
-    const progress = await storage.getProgressForUser(req.user.id);
+    const progress = await storage.getProgressForUser(req.user?.id || 1);
     res.json(progress);
   });
 
