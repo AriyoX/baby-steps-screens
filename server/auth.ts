@@ -85,8 +85,8 @@ export function setupAuth(app: Express) {
   app.get("/api/user", (req, res) => {
     res.json({
       id: 1,
-      username: "demo",
-      displayName: "Demo User",
+      username: "Ariyo",
+      displayName: "Ariyo",
       isParent: true,
       password: "mock",
     });

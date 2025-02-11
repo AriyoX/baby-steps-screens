@@ -12,6 +12,9 @@ import LearnPage from "@/pages/learn-page";
 import AchievementsPage from "@/pages/achievements-page";
 import ModulePage from "@/pages/module-page";
 import ProfilePage from "@/pages/profile-page"; // Added import
+import BugandaCulture from "@/pages/learn/culture";
+import VirtualMuseum from "@/pages/learn/museum";
+import Games from "@/pages/learn/games";
 
 const modulePages = {
   culture: {
@@ -52,6 +55,9 @@ function Router() {
       <Route path="/child/:id" component={ChildDashboard} />
       <Route path="/child/:id/details" component={ChildDetails} />
       <Route path="/learn" component={LearnPage} />
+      <Route path="/learn/culture" component={BugandaCulture} />
+      <Route path="/learn/museum" component={VirtualMuseum} />
+      <Route path="/learn/games" component={Games} />
       <Route path="/achievements" component={AchievementsPage} />
       <Route path="/profile" component={ProfilePage} /> {/* Added route */}
 
