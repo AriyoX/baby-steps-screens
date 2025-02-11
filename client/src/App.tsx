@@ -11,6 +11,7 @@ import ChildDetails from "@/pages/child-details";
 import LearnPage from "@/pages/learn-page";
 import AchievementsPage from "@/pages/achievements-page";
 import ModulePage from "@/pages/module-page";
+import ProfilePage from "@/pages/profile-page"; // Added import
 
 const modulePages = {
   culture: {
@@ -52,6 +53,7 @@ function Router() {
       <Route path="/child/:id/details" component={ChildDetails} />
       <Route path="/learn" component={LearnPage} />
       <Route path="/achievements" component={AchievementsPage} />
+      <Route path="/profile" component={ProfilePage} /> {/* Added route */}
 
       {/* Learning module routes */}
       {Object.entries(modulePages).map(([key, props]) => (
